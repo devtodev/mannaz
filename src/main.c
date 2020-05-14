@@ -16,7 +16,8 @@
 #include "mannaz.h"
 
 int main(int argc, char **argv) {
-	btScan();
+	//btScan();
+	bleScan();
 	return 0;
 }
 
