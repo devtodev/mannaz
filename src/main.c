@@ -13,11 +13,25 @@
  *      Author: Carlos Miguens
  */
 
-#include "mannaz.h"
+#include "bt.h"
+#include "stdint.h"
+
+#define MAXBUFFERSIZE 100
 
 int main(int argc, char **argv) {
+	// joystick N64 00:12:12:24:14:56
 	//btScan();
-	bleScan();
+	char buffer[MAXBUFFERSIZE];
+	char *address = "00:12:12:24:14:56";
+	int status = 0;
+	status = cmd_rfcomm_connect(address);
+	while(status != -1)
+	{
+		status = cmd_rfcomm_read(buffer, MAXBUFFERSIZE);
+		printf("%s\n", buffer);
+	}
+	cmd_rfcomm_disconnect();
+	//bleScan();
 	return 0;
 }
 
